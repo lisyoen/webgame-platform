@@ -1,18 +1,33 @@
 nohup: 입력 무시
-Error: The module '/home/lisyoen/git/webgame-platform/node_modules/better-sqlite3/build/Release/better_sqlite3.node'
-was compiled against a different Node.js version using
-NODE_MODULE_VERSION 108. This version of Node.js requires
-NODE_MODULE_VERSION 109. Please try re-compiling or re-installing
-the module (for instance, using `npm rebuild` or `npm install`).
-    at Object.Module._extensions..node (node:internal/modules/cjs/loader:1452:18)
-    at Module.load (node:internal/modules/cjs/loader:1197:32)
-    at Function.Module._load (node:internal/modules/cjs/loader:1013:12)
-    at Module.require (node:internal/modules/cjs/loader:1225:19)
-    at require (node:internal/modules/helpers:177:18)
-    at bindings (/home/lisyoen/git/webgame-platform/node_modules/bindings/bindings.js:112:48)
-    at new Database (/home/lisyoen/git/webgame-platform/node_modules/better-sqlite3/lib/database.js:48:64)
-    at Object.<anonymous> (/home/lisyoen/git/webgame-platform/src/utils.ts:4:12)
-    at Module._compile (node:internal/modules/cjs/loader:1356:14)
-    at Module.m._compile (/home/lisyoen/git/webgame-platform/node_modules/ts-node/src/index.ts:1618:23) {
-  code: 'ERR_DLOPEN_FAILED'
-}
+
+> webgame-platform@1.0.0 start
+> concurrently "npm run server" "npm run client"
+
+[1] 
+[1] > webgame-platform@1.0.0 client
+[1] > cd client && npm run dev
+[1] 
+[0] 
+[0] > webgame-platform@1.0.0 server
+[0] > ts-node src/app.ts
+[0] 
+[1] 
+[1] > client@0.0.0 dev
+[1] > vite
+[1] 
+[1] 
+[1]   VITE v6.3.4  ready in 469 ms
+[1] 
+[1]   ➜  Local:   http://localhost:8001/
+[1]   ➜  Network: http://192.168.0.51:8001/
+[1]   ➜  Network: http://10.188.216.100:8001/
+[0] Server is running on http://lisyoen2.iptime.org:8000
+[0] 요청: GET /
+[0] GET / 요청 처리 중...
+[0] 요청: GET /favicon.ico
+[0] 요청: GET /
+[0] GET / 요청 처리 중...
+[0] 요청: GET /
+[0] GET / 요청 처리 중...
+[0] npm run server exited with code SIGHUP
+[1] npm run client exited with code SIGHUP
