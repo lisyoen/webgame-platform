@@ -1,0 +1,54 @@
+.
+├── READMD.md
+├── client
+│   ├── README.md
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   └── vite.svg
+│   ├── server.log
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.tsx
+│   │   ├── assets
+│   │   │   └── react.svg
+│   │   ├── index.css
+│   │   ├── main.tsx
+│   │   ├── pages
+│   │   │   ├── Home.tsx
+│   │   │   └── Upload.tsx
+│   │   └── vite-env.d.ts
+│   ├── tsconfig.app.json
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
+├── data
+├── distutils.zip
+├── package-lock.json
+├── package.json
+├── public
+│   └── (정적 리소스)
+├── run-dev.sh
+├── server.log
+├── src
+│   ├── App.tsx
+│   ├── app.ts
+│   ├── pages
+│   │   ├── Home.tsx
+│   │   └── Upload.tsx
+│   ├── routes
+│   │   ├── games.ts
+│   │   ├── register.ts
+│   │   └── upload.ts
+│   └── utils.ts
+├── temp
+├── tree.txt
+├── tsconfig.json
+├── uploads
+│   └── {gameId}
+│       └── index.html
+└── vite.log
+
+13 directories, 39 files

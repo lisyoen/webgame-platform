@@ -1,3 +1,0 @@
-The file /webgame-platform/webgame-platform/data is intended to be an SQLite database file and should not contain any content directly. Instead, it will be created and managed by the application at runtime. Therefore, the file is intentionally left blank.
-
-This file is intentionally left blank.
