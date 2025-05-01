@@ -1,0 +1,73 @@
+Contents of the file: /webgame-platform/src/routes/upload.ts
+
+import express from 'express';
+import multer from 'multer';
+import { extractZip } from '../utils';
+import { v4 as uuidv4 } from 'uuid';
+import path from 'path';
+
+const router = express.Router();
+const upload = multer({ dest: 'uploads/' });
+
+router.post('/upload', upload.single('gameZip'), async (req, res) => {
+    if (!req.file) {
+        return res.status(400).send('No file uploaded.');
+    }
+
+    const gameId = uuidv4();
+    const gamePath = path.join(__dirname, '../../uploads', gameId);
+
+    try {
+        await extractZip(req.file.path, gamePath);
+        res.status(200).send({ gameId });
+    } catch (error) {
+        res.status(500).send('Error extracting zip file.');
+    }
+});
+
+export default router;
+
+Contents of the file: /webgame-platform/src/routes/games.ts
+
+import express from 'express';
+import sqlite3 from 'sqlite3';
+import path from 'path';
+
+const router = express.Router();
+const db = new sqlite3.Database(path.join(__dirname, '../../data/games.db'));
+
+router.get('/games', (req, res) => {
+    db.all('SELECT * FROM games', [], (err, rows) => {
+        if (err) {
+            return res.status(500).send('Error retrieving games.');
+        }
+        res.status(200).json(rows);
+    });
+});
+
+router.get('/games/:id', (req, res) => {
+    const gameId = req.params.id;
+    // Logic to execute the game can be added here
+    res.status(200).send(`Executing game with ID: ${gameId}`);
+});
+
+export default router;
+
+Contents of the file: /webgame-platform/src/utils.ts
+
+import fs from 'fs';
+import path from 'path';
+import { promisify } from 'util';
+import unzipper from 'unzipper';
+import { v4 as uuidv4 } from 'uuid';
+
+export const extractZip = async (zipPath: string, dest: string) => {
+    const directory = await fs.promises.mkdir(dest, { recursive: true });
+    return fs.createReadStream(zipPath)
+        .pipe(unzipper.Extract({ path: dest }))
+        .promise();
+};
+
+export const generateUUID = () => {
+    return uuidv4();
+};

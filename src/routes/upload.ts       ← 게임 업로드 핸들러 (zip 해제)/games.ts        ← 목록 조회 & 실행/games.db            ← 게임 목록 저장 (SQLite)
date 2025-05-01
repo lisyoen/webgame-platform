@@ -1,0 +1,69 @@
+Here are the contents for the requested files:
+
+**/webgame-platform/src/routes/upload.ts**
+
+import express from 'express';
+import multer from 'multer';
+import fs from 'fs';
+import path from 'path';
+import unzipper from 'unzipper';
+import { v4 as uuidv4 } from 'uuid';
+
+const router = express.Router();
+const upload = multer({ dest: 'uploads/' });
+
+router.post('/upload', upload.single('gameZip'), async (req, res) => {
+    const gameId = uuidv4();
+    const uploadPath = path.join(__dirname, '../../uploads', gameId);
+
+    fs.mkdirSync(uploadPath, { recursive: true });
+
+    fs.createReadStream(req.file.path)
+        .pipe(unzipper.Extract({ path: uploadPath }))
+        .on('close', () => {
+            fs.unlinkSync(req.file.path); // Remove the zip file after extraction
+            res.status(200).json({ message: 'Game uploaded successfully', gameId });
+        })
+        .on('error', (err) => {
+            res.status(500).json({ message: 'Error extracting game', error: err.message });
+        });
+});
+
+export default router;
+
+---
+
+**/webgame-platform/src/routes/games.ts**
+
+import express from 'express';
+import sqlite3 from 'sqlite3';
+import path from 'path';
+
+const router = express.Router();
+const dbPath = path.join(__dirname, '../../data/games.db');
+
+router.get('/games', (req, res) => {
+    const db = new sqlite3.Database(dbPath);
+    db.all('SELECT * FROM games', [], (err, rows) => {
+        if (err) {
+            res.status(500).json({ message: 'Error retrieving games', error: err.message });
+            return;
+        }
+        res.status(200).json(rows);
+    });
+    db.close();
+});
+
+router.get('/games/:id', (req, res) => {
+    const gameId = req.params.id;
+    // Logic to execute the game can be added here
+    res.status(200).json({ message: `Executing game with ID: ${gameId}` });
+});
+
+export default router;
+
+---
+
+**/webgame-platform/data/games.db**
+
+-- This file is intentionally left blank.
