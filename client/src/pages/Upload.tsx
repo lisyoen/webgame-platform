@@ -23,11 +23,16 @@ const Upload = () => {
 
   if (gameId) {
     return (
-      <div>
-        <h2>등록 완료!</h2>
+      <div style={{ padding: '1rem', textAlign: 'center' }}>
+        <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>등록 완료!</h2>
         <iframe
           src={`http://lisyoen2.iptime.org:8000/uploads/${gameId}/index.html`}
-          style={{ width: '100%', height: '90vh', border: 'none' }}
+          style={{
+            width: '100%',
+            height: '80vh',
+            border: 'none',
+            borderRadius: '8px',
+          }}
           title="game"
         />
       </div>
@@ -35,23 +40,55 @@ const Upload = () => {
   }
 
   return (
-    <div>
-      <h1>게임 등록</h1>
+    <div style={{ padding: '1rem', maxWidth: '600px', margin: '0 auto' }}>
+      <h1 style={{ fontSize: '1.5rem', textAlign: 'center', marginBottom: '1rem' }}>게임 등록</h1>
       <input
         type="text"
         placeholder="게임 제목"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        style={{ display: 'block', marginBottom: '1rem', width: '100%' }}
+        style={{
+          display: 'block',
+          marginBottom: '1rem',
+          width: '100%',
+          padding: '0.5rem',
+          fontSize: '1rem',
+          border: '1px solid #ddd',
+          borderRadius: '4px',
+          boxSizing: 'border-box',
+        }}
       />
       <textarea
         placeholder="여기에 HTML 코드를 붙여넣으세요"
         value={htmlCode}
         onChange={(e) => setHtmlCode(e.target.value)}
         rows={15}
-        style={{ width: '100%' }}
+        style={{
+          width: '100%',
+          padding: '0.5rem',
+          fontSize: '1rem',
+          border: '1px solid #ddd',
+          borderRadius: '4px',
+          boxSizing: 'border-box',
+          marginBottom: '1rem',
+        }}
       />
-      <button onClick={handleSubmit}>등록</button>
+      <button
+        onClick={handleSubmit}
+        style={{
+          display: 'block',
+          width: '100%',
+          padding: '0.75rem',
+          fontSize: '1rem',
+          backgroundColor: '#007BFF',
+          color: 'white',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer',
+        }}
+      >
+        등록
+      </button>
     </div>
   );
 };
