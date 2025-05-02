@@ -10,7 +10,8 @@
     "build": "tsc",
     "dev": "ts-node-dev src/app.ts",
     "background": "pm2 delete server || true && pm2 delete client || true && pm2 start src/app.ts --name server --interpreter ts-node && pm2 start npm --name client -- run dev --prefix client",
-    "tree": "tree -I 'node_modules|data|cpython-3.12|public|uploads|logs|dist|dist-ssr|*.log|*.local|.vscode|.idea|.DS_Store|*.suo|*.ntvs*|*.njsproj|*.sln|*.sw?' --prune > tree.txt"
+    "tree": "tree -I 'node_modules|data|cpython-3.12|public|uploads|logs|dist|dist-ssr|*.log|*.local|.vscode|.idea|.DS_Store|*.suo|*.ntvs*|*.njsproj|*.sln|*.sw?' --prune > tree.txt",
+    "gpt": "npm run tree && echo \"\n\" >> tree.txt &&cat README.md >> tree.txt && echo package.json >> tree.txt && cat package.json >> tree.txt && echo ./client/package.json >> tree.txt && cat ./client/package.json >> tree.txt"
   },
   "dependencies": {
     "better-sqlite3": "^11.9.1",
@@ -24,18 +25,18 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.13",
-    "@types/cors": "^2.8.17",
-    "@types/ejs": "^3.0.7",
-    "@types/express": "^4.17.13",
-    "@types/multer": "^1.4.7",
-    "@types/node": "^16.11.7",
-    "@types/unzipper": "^0.10.11",
-    "@types/uuid": "^10.0.0",
+    "@cats/better-sqlite3": "^7.6.13",
+    "@cats/cors": "^2.8.17",
+    "@cats/ejs": "^3.0.7",
+    "@cats/express": "^4.17.13",
+    "@cats/multer": "^1.4.7",
+    "@cats/node": "^16.11.7",
+    "@cats/unzipper": "^0.10.11",
+    "@cats/uuid": "^10.0.0",
     "concurrently": "^9.1.2",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.9.5"
+    "catscript": "^4.9.5"
   },
   "keywords": [
     "web",
