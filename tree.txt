@@ -39,8 +39,6 @@
 │   └── utils.ts
 ├── test.db
 ├── tree.txt
-├── tree2.txt
-├── tree2.txt
 └── tsconfig.json
 
-8 directories, 36 files
+8 directories, 34 files
