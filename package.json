@@ -11,7 +11,7 @@
     "dev": "ts-node-dev src/app.ts",
     "background": "pm2 delete server || true && pm2 delete client || true && pm2 start src/app.ts --name server --interpreter ts-node && pm2 start npm --name client -- run dev --prefix client",
     "tree": "tree -I 'node_modules|data|cpython-3.12|public|uploads|logs|dist|dist-ssr|*.log|*.local|.vscode|.idea|.DS_Store|*.suo|*.ntvs*|*.njsproj|*.sln|*.sw?' --prune > tree.txt",
-    "gpt": "npm run tree && echo \"\n\" >> tree.txt &&cat README.md >> tree.txt && echo package.json >> tree.txt && cat package.json >> tree.txt && echo ./client/package.json >> tree.txt && cat ./client/package.json >> tree.txt"
+    "gpt": "cp gpt.txt chat.txt && npm run tree && cat tree.txt >> chat.txt && echo \"\n\" >> chat.txt &&cat README.md >> chat.txt && echo package.json >> chat.txt && cat package.json >> chat.txt && echo ./client/package.json >> chat.txt && cat ./client/package.json >> chat.txt"
   },
   "dependencies": {
     "better-sqlite3": "^11.9.1",
