@@ -3,3 +3,4 @@ data
 cpython-3.12
 public
 uploads
+!*.txt

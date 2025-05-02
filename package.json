@@ -9,7 +9,8 @@
     "client": "cd client && npm run dev",
     "build": "tsc",
     "dev": "ts-node-dev src/app.ts",
-    "background": "pm2 delete server || true && pm2 delete client || true && pm2 start src/app.ts --name server --interpreter ts-node && pm2 start npm --name client -- run dev --prefix client"
+    "background": "pm2 delete server || true && pm2 delete client || true && pm2 start src/app.ts --name server --interpreter ts-node && pm2 start npm --name client -- run dev --prefix client",
+    "tree": "tree -I 'node_modules|data|cpython-3.12|public|uploads|logs|dist|dist-ssr|*.log|*.local|.vscode|.idea|.DS_Store|*.suo|*.ntvs*|*.njsproj|*.sln|*.sw?' --prune > tree.txt"
   },
   "dependencies": {
     "better-sqlite3": "^11.9.1",
