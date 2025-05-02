@@ -9,7 +9,7 @@
     "client": "cd client && npm run dev",
     "build": "tsc",
     "dev": "ts-node-dev src/app.ts",
-    "background": "pm2 start src/app.ts --name server --interpreter ts-node && pm2 start npm --name client -- run dev --prefix client"
+    "background": "pm2 delete server || true && pm2 delete client || true && pm2 start src/app.ts --name server --interpreter ts-node && pm2 start npm --name client -- run dev --prefix client"
   },
   "dependencies": {
     "better-sqlite3": "^11.9.1",
