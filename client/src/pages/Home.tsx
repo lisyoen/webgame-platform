@@ -4,11 +4,13 @@ type Game = {
   id: string;
   title: string;
   createdAt: string;
+  prompt: string;
 };
 
 const Home = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [selected, setSelected] = useState<string | null>(null);
+  const [prompt, setPrompt] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('http://lisyoen2.iptime.org:8000/')
@@ -46,7 +48,7 @@ const Home = () => {
                 cursor: 'pointer',
               }}
             >
-              {game.title} ({new Date(game.createdAt).toLocaleDateString()})
+              {game.title} <br/>({new Date(game.createdAt).toLocaleDateString()})
             </button>
             <button
               style={{
@@ -70,9 +72,49 @@ const Home = () => {
             >
               삭제
             </button>
+            <button
+              onClick={() => setPrompt(game.prompt)}
+              style={{
+                marginLeft: '1rem',
+                color: 'white',
+                backgroundColor: 'green',
+                border: 'none',
+                padding: '0.5rem 1rem',
+                borderRadius: '4px',
+                cursor: 'pointer',
+              }}
+            >
+              Prompt
+            </button>
           </li>
         ))}
       </ul>
+
+      {prompt && (
+        <div style={{ marginTop: '1rem' }}>
+          <h2>프롬프트 내용</h2>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: prompt.replace(/\n/g, '<br />'),
+            }}
+          />
+          <button
+            onClick={() => setPrompt(null)}
+            style={{
+              display: 'block',
+              margin: '0 auto 1rem',
+              padding: '0.5rem 1rem',
+              backgroundColor: '#007BFF',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+            }}
+          >
+            닫기
+          </button>
+        </div>
+      )}
 
       {selected && (
         <div style={{ marginTop: '1rem' }}>

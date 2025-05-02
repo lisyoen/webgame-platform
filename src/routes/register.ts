@@ -61,24 +61,18 @@ function wrapHtml(title: string, rawHtml: string): string {
 }
 
 router.post('/', async (req, res) => {
-    console.log('POST /register 요청 처리 중...');
-    const { title, html } = req.body;
+    const { title, html, prompt } = req.body;
 
     if (!title || !html) {
-        console.log('요청 데이터가 유효하지 않음');
         return res.status(400).json({ error: 'title and html are required' });
     }
 
     const id = uuidv4();
-    const createdAt = new Date().toISOString();
+    insertGame(id, title, prompt || ''); // 프롬프트 저장
 
-    // DB 저장
-    insertGame(id, title);
-
-    // HTML 보정 및 저장
     const gamePath = path.join(__dirname, '..', '..', 'uploads', id);
     fs.mkdirSync(gamePath, { recursive: true });
-    const finalHtml = wrapHtml(title, html); // ← 적용 위치
+    const finalHtml = wrapHtml(title, html);
     fs.writeFileSync(path.join(gamePath, 'index.html'), finalHtml, 'utf-8');
 
     res.status(201).json({ id });

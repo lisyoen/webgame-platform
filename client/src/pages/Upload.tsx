@@ -4,6 +4,7 @@ const Upload = () => {
   const [title, setTitle] = useState('');
   const [htmlCode, setHtmlCode] = useState('');
   const [gameId, setGameId] = useState<string | null>(null);
+  const [prompt, setPrompt] = useState('');
 
   const handleSubmit = async () => {
     if (!title.trim() || !htmlCode.trim()) {
@@ -63,6 +64,21 @@ const Upload = () => {
         value={htmlCode}
         onChange={(e) => setHtmlCode(e.target.value)}
         rows={15}
+        style={{
+          width: '100%',
+          padding: '0.5rem',
+          fontSize: '1rem',
+          border: '1px solid #ddd',
+          borderRadius: '4px',
+          boxSizing: 'border-box',
+          marginBottom: '1rem',
+        }}
+      />
+      <textarea
+        placeholder="게임 프롬프트"
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
+        rows={5}
         style={{
           width: '100%',
           padding: '0.5rem',

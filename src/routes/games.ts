@@ -7,7 +7,7 @@ import db from '../utils';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  const rows = db.prepare('SELECT id, title, createdAt FROM games ORDER BY createdAt DESC').all();
+  const rows = db.prepare('SELECT id, title, prompt, createdAt FROM games ORDER BY createdAt DESC').all();
   res.json(rows);
 });
 

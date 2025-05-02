@@ -7,43 +7,20 @@ const Upload = () => {
   const [gameId, setGameId] = useState<string | null>(null);
   const [gameTitle, setGameTitle] = useState<string>('');
   const [htmlCode, setHtmlCode] = useState<string>('');
+  const [prompt, setPrompt] = useState<string>('');
 
   const handleUpload = async () => {
-    if (!file || !gameTitle || !htmlCode) return alert('모든 필드를 채워주세요.');
-  
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('gameTitle', gameTitle);
-    formData.append('htmlCode', htmlCode);
-  
-    const res = await fetch('http://lisyoen2.iptime.org:3000/upload', {
-      method: 'POST',
-      body: formData,
-    });
-  
-    const uploadResult = await res.json();
-  
-    // 등록 API 호출
-    const registerRes = await fetch('http://lisyoen2.iptime.org:8000/register', {
+    if (!gameTitle || !htmlCode || !prompt) return alert('모든 필드를 채워주세요.');
+
+    const res = await fetch('http://lisyoen2.iptime.org:8000/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        title: gameTitle,
-        html: htmlCode,
-      }),
+      body: JSON.stringify({ title: gameTitle, html: htmlCode, prompt }),
     });
-  
-    if (!registerRes.ok) {
-      return alert('등록 실패');
-    }
-  
-    const registerResult = await registerRes.json();
-    console.log('등록 성공:', registerResult);
-  
-    // iframe 렌더링용 gameId 설정 (upload 쪽 결과가 기준이라면 그대로 유지)
-    setGameId(uploadResult.id);
+
+    const data = await res.json();
+    setGameId(data.id);
   };
-  
 
   const handleSubmit = async () => {
     try {
@@ -92,6 +69,11 @@ const Upload = () => {
         placeholder="게임 HTML 코드"
         value={htmlCode}
         onChange={(e) => setHtmlCode(e.target.value)}
+      />
+      <textarea
+        placeholder="프롬프트"
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
       />
       <button onClick={handleUpload}>게임 등록</button>
     </div>
