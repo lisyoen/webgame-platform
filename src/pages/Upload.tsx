@@ -93,11 +93,6 @@ const Upload = () => {
         value={htmlCode}
         onChange={(e) => setHtmlCode(e.target.value)}
       />
-      <input
-        type="file"
-        accept=".zip"
-        onChange={(e) => setFile(e.target.files?.[0] || null)}
-      />
       <button onClick={handleUpload}>게임 등록</button>
     </div>
   );

@@ -15,12 +15,6 @@ router.post('/', upload.single('file'), async (req, res) => {
   const uploadDir = path.join(__dirname, '..', '..', 'uploads', id);
 
   fs.mkdirSync(uploadDir, { recursive: true });
-
-  fs.createReadStream(req.file.path)
-    .pipe(unzipper.Extract({ path: uploadDir }))
-    .on('close', () => {
-      res.status(200).json({ id });
-    });
 });
 
 export default router;
