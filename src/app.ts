@@ -8,7 +8,8 @@ const port = process.env.PORT || 8000;
 import path from 'path';
 
 // 정적 파일 경로 추가 (uploads 디렉토리를 URL로 서빙)
-app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+app.use('/upload', express.static(path.join(__dirname, '..', 'uploads')));
+
 
 // CORS 미들웨어 설정
 app.use(cors({

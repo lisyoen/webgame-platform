@@ -1,46 +1,46 @@
 .
-├── README.md
-├── chat.txt
-├── client
-│   ├── README.md
-│   ├── eslint.config.js
-│   ├── index.html
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── src
-│   │   ├── App.css
-│   │   ├── App.tsx
-│   │   ├── assets
-│   │   │   └── react.svg
-│   │   ├── index.css
-│   │   ├── main.tsx
-│   │   ├── pages
-│   │   │   ├── Home.tsx
-│   │   │   └── Upload.tsx
-│   │   └── vite-env.d.ts
-│   ├── tsconfig.app.json
-│   ├── tsconfig.json
-│   ├── tsconfig.node.json
-│   └── vite.config.ts
-├── distutils.zip
-├── gpt.txt
-├── package-lock.json
-├── package.json
-├── run-dev.sh
-├── src
-│   ├── App.tsx
-│   ├── app.ts
-│   ├── pages
-│   │   ├── Home.tsx
-│   │   └── Upload.tsx
-│   ├── routes
-│   │   ├── delete.ts
-│   │   ├── games.ts
-│   │   ├── register.ts
-│   │   └── upload.ts
-│   └── utils.ts
-├── test.db
-├── tree.txt
-└── tsconfig.json
+├── README.md                  # 프로젝트 개요와 실행 방법 설명
+├── chat.txt                   # 프로젝트 관련 메모나 대화 기록
+├── client                     # 프론트엔드 React 애플리케이션 디렉토리
+│   ├── README.md              # 프론트엔드 관련 설명 문서
+│   ├── eslint.config.js       # ESLint 설정 파일
+│   ├── index.html             # React 애플리케이션의 진입점 HTML 파일
+│   ├── package-lock.json      # 프론트엔드 의존성 잠금 파일
+│   ├── package.json           # 프론트엔드 프로젝트 메타데이터와 의존성 정의
+│   ├── src                    # React 소스 코드 디렉토리
+│   │   ├── App.css            # 전역 스타일 정의
+│   │   ├── App.tsx            # React 루트 컴포넌트
+│   │   ├── assets             # 정적 자산 디렉토리
+│   │   │   └── react.svg      # React 로고 이미지
+│   │   ├── index.css          # 기본 스타일 정의
+│   │   ├── main.tsx           # React 애플리케이션 진입점
+│   │   ├── pages              # 페이지 컴포넌트 디렉토리
+│   │   │   ├── Home.tsx       # 게임 목록 및 실행 화면 컴포넌트
+│   │   │   └── Upload.tsx     # 게임 업로드 화면 컴포넌트
+│   │   └── vite-env.d.ts      # Vite 환경에서 TypeScript 타입 정의
+│   ├── tsconfig.app.json      # 프론트엔드 TypeScript 설정 파일
+│   ├── tsconfig.json          # 프론트엔드 프로젝트 TypeScript 설정 파일
+│   ├── tsconfig.node.json     # Node.js 관련 TypeScript 설정 파일
+│   └── vite.config.ts         # Vite 개발 서버 설정 파일
+├── distutils.zip              # 배포 관련 유틸리티 파일
+├── gpt.txt                    # 프로젝트 관련 요청사항이나 설명
+├── package-lock.json          # 의존성 잠금 파일
+├── package.json               # 프로젝트 메타데이터와 의존성 정의
+├── run-dev.sh                 # 개발 서버 실행 스크립트
+├── src                        # 백엔드 Express 애플리케이션 디렉토리
+│   ├── App.tsx                # React 루트 컴포넌트 (중복된 파일로 보임)
+│   ├── app.ts                 # Express 서버 진입점
+│   ├── pages                  # React 페이지 컴포넌트 디렉토리
+│   │   ├── Home.tsx           # 게임 목록 및 실행 화면 컴포넌트
+│   │   └── Upload.tsx         # 게임 업로드 화면 컴포넌트
+│   ├── routes                 # Express 라우트 핸들러 디렉토리
+│   │   ├── delete.ts          # 게임 삭제 API 라우트
+│   │   ├── games.ts           # 게임 목록 조회 및 등록 API 라우트
+│   │   ├── register.ts        # 게임 등록 API 라우트
+│   │   └── upload.ts          # 파일 업로드 API 라우트
+│   └── utils.ts               # 데이터베이스 초기화 및 유틸리티 함수
+├── test.db                    # SQLite 데이터베이스 파일
+├── tree.txt                   # 프로젝트 디렉토리 구조 기록
+└── tsconfig.json              # TypeScript 컴파일러 설정 파일
 
 8 directories, 36 files

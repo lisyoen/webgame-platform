@@ -71,14 +71,30 @@ const Home = () => {
                 cursor: 'pointer',
               }}
             >
-              {game.title} <br/>({new Date(game.createdAt).toLocaleDateString()})
+              {game.title}{' '}
+              <a
+                href={`http://lisyoen2.iptime.org:8000/uploads/${game.id}/index.html`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: '#007BFF',
+                  fontSize: '0.75rem', // 1/4 크기로 줄임
+                  textDecoration: 'none',
+                  cursor: 'pointer',
+                  marginLeft: '0.5rem',
+                }}
+              >
+                🔗
+              </a>
+              <br />
+              ({new Date(game.createdAt).toLocaleDateString()})
             </button>
             <button
               style={{
                 marginLeft: '1rem',
-                color: 'white',
-                backgroundColor: 'red',
-                border: 'none',
+                color: 'red', // 텍스트 색상 빨강
+                backgroundColor: 'white', // 배경 흰색
+                border: '1px solid red', // 빨간 테두리
                 padding: '0.5rem 1rem',
                 borderRadius: '4px',
                 cursor: 'pointer',
@@ -93,21 +109,21 @@ const Home = () => {
                 }
               }}
             >
-              삭제
+              🗑️
             </button>
             <button
               onClick={() => setPrompt(game.prompt)}
               style={{
                 marginLeft: '1rem',
-                color: 'white',
-                backgroundColor: 'green',
-                border: 'none',
+                color: '#007BFF', // 텍스트 색상 파랑
+                backgroundColor: 'white', // 배경 흰색
+                border: '1px solid #007BFF', // 파란 테두리
                 padding: '0.5rem 1rem',
                 borderRadius: '4px',
                 cursor: 'pointer',
               }}
             >
-              Prompt
+              💬
             </button>
           </li>
         ))}
