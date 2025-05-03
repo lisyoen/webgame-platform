@@ -11,6 +11,9 @@ const Home = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [selected, setSelected] = useState<string | null>(null);
   const [prompt, setPrompt] = useState<string | null>(null);
+  const [title, setTitle] = useState<string>('');
+  const [htmlCode, setHtmlCode] = useState<string>('');
+  const [gameId, setGameId] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('http://lisyoen2.iptime.org:8000/')
@@ -18,9 +21,29 @@ const Home = () => {
       .then((data) => setGames(data));
   }, []);
 
+  const handleSubmit = async () => {
+    if (!title.trim() || !htmlCode.trim()) {
+      alert('제목과 HTML 코드를 모두 입력해주세요.');
+      return;
+    }
+
+    console.log({ title, html: htmlCode, prompt });
+
+    const res = await fetch('http://lisyoen2.iptime.org:8000/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, html: htmlCode, prompt }), // prompt 추가
+    });
+
+    const data = await res.json();
+    setGameId(data.id);
+  };
+
   return (
     <div style={{ width: '100%', padding: '1rem', boxSizing: 'border-box' }}>
-      <h1 style={{ textAlign: 'center', fontSize: '1.5rem' }}>게임 목록</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+        <h1 style={{ textAlign: 'center', fontSize: '1.5rem' }}>게임 목록</h1>
+      </div>
       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
         {games.map((game) => (
           <li

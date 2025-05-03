@@ -8,18 +8,24 @@ const Upload = () => {
 
   const handleSubmit = async () => {
     if (!title.trim() || !htmlCode.trim()) {
+      console.log('입력값이 비어 있음'); // 조건문 확인
       alert('제목과 HTML 코드를 모두 입력해주세요.');
       return;
     }
 
-    const res = await fetch('http://lisyoen2.iptime.org:8000/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, html: htmlCode }),
-    });
+    try {
+      const res = await fetch('http://lisyoen2.iptime.org:8000/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, html: htmlCode, prompt }), // prompt 추가
+      });
 
-    const data = await res.json();
-    setGameId(data.id);
+      const data = await res.json();
+      console.log('서버 응답:', data); // 서버 응답 확인
+      setGameId(data.id);
+    } catch (error) {
+      console.error('등록 요청 중 오류 발생:', error); // 에러 로그 추가
+    }
   };
 
   if (gameId) {
