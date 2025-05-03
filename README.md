@@ -19,6 +19,8 @@ iframe을 통해 즉시 실행할 수 있습니다.
 
 ## 기술 스택
 
+- **개발도구**: VSCode + Copilot + ChatGPT 4o
+
 - **백엔드**: Node.js + TypeScript + Express
 - **DB**: SQLite (게임 메타 정보 저장)
 - **기타**: Multer, UUID
