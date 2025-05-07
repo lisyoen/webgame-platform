@@ -1,0 +1,77 @@
+src/App.tsx(1,18): error TS6142: Module './pages/Home' was resolved to '/home/lisyoen/git/webgame-platform/src/pages/Home.tsx', but '--jsx' is not set.
+src/App.tsx(2,20): error TS6142: Module './pages/Upload' was resolved to '/home/lisyoen/git/webgame-platform/src/pages/Upload.tsx', but '--jsx' is not set.
+src/App.tsx(3,26): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/App.tsx(9,5): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/App.tsx(9,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/App.tsx(10,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/App.tsx(10,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/App.tsx(11,9): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/App.tsx(11,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/App.tsx(11,54): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/App.tsx(12,9): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/App.tsx(12,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/App.tsx(12,57): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/App.tsx(13,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/App.tsx(14,26): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/App.tsx(14,37): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/App.tsx(15,5): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(2,37): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/pages/Home.tsx(3,80): error TS2307: Cannot find module 'react-router-dom' or its corresponding type declarations.
+src/pages/Home.tsx(10,5): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(10,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Home.tsx(11,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(11,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Home.tsx(11,51): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(12,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(12,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Home.tsx(17,5): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(37,5): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(37,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Home.tsx(38,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(38,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Home.tsx(38,16): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(39,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(39,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Home.tsx(40,21): error TS7006: Parameter 'id' implicitly has an 'any' type.
+src/pages/Home.tsx(41,11): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(41,11): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Home.tsx(42,13): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(42,13): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Home.tsx(42,61): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(43,11): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(45,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(46,5): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Home.tsx(52,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Home.tsx(53,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Home.tsx(54,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Home.tsx(54,34): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Home.tsx(55,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Home.tsx(55,43): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Upload.tsx(3,26): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/pages/Upload.tsx(48,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Upload.tsx(48,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Upload.tsx(49,9): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Upload.tsx(49,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Upload.tsx(49,28): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Upload.tsx(50,9): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Upload.tsx(50,9): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Upload.tsx(55,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Upload.tsx(60,5): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Upload.tsx(60,5): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Upload.tsx(61,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Upload.tsx(61,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Upload.tsx(61,16): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Upload.tsx(62,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Upload.tsx(62,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Upload.tsx(66,20): error TS7006: Parameter 'e' implicitly has an 'any' type.
+src/pages/Upload.tsx(68,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Upload.tsx(68,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Upload.tsx(71,20): error TS7006: Parameter 'e' implicitly has an 'any' type.
+src/pages/Upload.tsx(73,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Upload.tsx(73,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Upload.tsx(76,20): error TS7006: Parameter 'e' implicitly has an 'any' type.
+src/pages/Upload.tsx(78,7): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Upload.tsx(78,7): error TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+src/pages/Upload.tsx(78,43): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/pages/Upload.tsx(79,5): error TS7026: JSX element implicitly has type 'any' because no interface 'JSX.IntrinsicElements' exists.
+src/routes/games.ts(5,8): error TS1192: Module '"/home/lisyoen/git/webgame-platform/src/utils"' has no default export.

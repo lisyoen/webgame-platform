@@ -1,17 +1,20 @@
+const path = require('path');
+
 module.exports = {
-    apps: [
-        {
-            name: 'server',
-            script: 'src/app.ts',
-            interpreter: 'ts-node',
-            watch: false,
-        },
-        {
-            name: 'client',
-            cwd: './client',
-            script: 'npm',
-            args: 'run dev',
-            watch: false,
-        },
-    ],
+  apps: [
+    {
+      name: 'server',
+      script: './dist/app.js',
+      cwd: path.resolve(__dirname),
+      env: {
+        NODE_ENV: 'development'
+      }
+    },
+    {
+      name: 'client',
+      script: 'npm',
+      args: 'run dev',
+      cwd: path.resolve(__dirname, 'client'),
+    },
+  ],
 };
