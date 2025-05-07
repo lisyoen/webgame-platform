@@ -1,9 +1,19 @@
+// FilePath: client/src/App.tsx
 import Home from './pages/Home';
 import Upload from './pages/Upload';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
   const [view, setView] = useState<'home' | 'upload'>('home');
+
+  useEffect(() => {
+    // 페이지 전환 시 GA4에 페이지뷰 이벤트 전송
+    if (typeof gtag === 'function') {
+      gtag('event', 'page_view', {
+        page_path: view === 'home' ? '/' : '/upload',
+      });
+    }
+  }, [view]);
 
   return (
     <div>

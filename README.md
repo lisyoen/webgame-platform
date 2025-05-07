@@ -31,18 +31,4 @@ iframe을 통해 즉시 실행할 수 있습니다.
 
 ```bash
 npm install
-npx ts-node src/app.ts
-```
-
----
-
-## 접속 주소
-
-플랫폼은 아래 주소에서 접속할 수 있습니다:
-
-- **React 프론트엔드**: [http://lisyoen2.iptime.org:8001](http://lisyoen2.iptime.org:8001)
-- **API 서버**: [http://lisyoen2.iptime.org:8000](http://lisyoen2.iptime.org:8000)
-
-React 기반의 사용자 친화적인 인터페이스를 통해  
-게임을 업로드하고 실행할 수 있습니다.  
-지금 바로 접속하여 웹 게임을 즐겨보세요!
+npx ts-node
