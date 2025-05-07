@@ -5,6 +5,7 @@ import cors from 'cors';
 const app = express();
 const port = process.env.PORT || 8000;
 
+
 import path from 'path';
 
 // 정적 파일 경로 추가 (uploads 디렉토리를 URL로 서빙)
