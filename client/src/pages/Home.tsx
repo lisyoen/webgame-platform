@@ -1,3 +1,4 @@
+// Home.tsx
 import { useEffect, useState } from 'react';
 
 type Game = {
@@ -40,10 +41,34 @@ const Home = () => {
   };
 
   return (
-    <div style={{ width: '100%', padding: '1rem', boxSizing: 'border-box' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-        <h1 style={{ textAlign: 'center', fontSize: '1.5rem' }}>게임 목록</h1>
+    <div style={{ width: '100%', padding: '0', boxSizing: 'border-box' }}>
+      <nav
+        style={{
+          marginBottom: '0px', // nav 아래쪽 마진 완전히 제거
+        }}
+      >
+        {/* 네비게이션 내용 */}
+      </nav>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: '0', // div 위쪽 마진 제거
+          paddingTop: '0', // div 위쪽 패딩 제거
+        }}
+      >
+        {/* 중복된 버튼 제거 */}
       </div>
+      <h1
+        style={{
+          textAlign: 'center',
+          fontSize: '1.5rem',
+          margin: '0rem', // 헤더 위쪽과 아래쪽 간격 모두 제거
+        }}
+      >
+        게임 목록
+      </h1>
       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
         {games.map((game) => (
           <li
@@ -52,11 +77,13 @@ const Home = () => {
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              marginBottom: '1rem',
-              padding: '0.5rem',
+              marginBottom: '0.3rem', // 게임 카드 간 간격
+              padding: '0.2rem', // 게임 카드 안쪽 여백
               border: '1px solid #ddd',
               borderRadius: '8px',
               backgroundColor: '#f9f9f9',
+              height: '50px', // 게임 카드 높이
+              overflow: 'hidden',
             }}
           >
             <button
@@ -67,7 +94,7 @@ const Home = () => {
                 background: 'none',
                 border: 'none',
                 color: '#007BFF',
-                fontSize: '1rem',
+                fontSize: '0.85rem',
                 cursor: 'pointer',
               }}
             >
@@ -78,24 +105,26 @@ const Home = () => {
                 rel="noopener noreferrer"
                 style={{
                   color: '#007BFF',
-                  fontSize: '0.75rem', // 1/4 크기로 줄임
+                  fontSize: '0.7rem',
                   textDecoration: 'none',
                   cursor: 'pointer',
-                  marginLeft: '0.5rem',
+                  marginLeft: '0.3rem',
                 }}
               >
                 🔗
               </a>
               <br />
-              ({new Date(game.createdAt).toLocaleDateString()})
+              <span style={{ fontSize: '0.7rem', color: '#555' }}>
+                ({new Date(game.createdAt).toLocaleDateString()})
+              </span>
             </button>
             <button
               style={{
-                marginLeft: '1rem',
-                color: 'red', // 텍스트 색상 빨강
-                backgroundColor: 'white', // 배경 흰색
-                border: '1px solid red', // 빨간 테두리
-                padding: '0.5rem 1rem',
+                marginLeft: '0.3rem',
+                color: 'red',
+                backgroundColor: 'white',
+                border: '1px solid red',
+                padding: '0.1rem 0.3rem',
                 borderRadius: '4px',
                 cursor: 'pointer',
               }}
@@ -114,11 +143,11 @@ const Home = () => {
             <button
               onClick={() => setPrompt(game.prompt)}
               style={{
-                marginLeft: '1rem',
-                color: '#007BFF', // 텍스트 색상 파랑
-                backgroundColor: 'white', // 배경 흰색
-                border: '1px solid #007BFF', // 파란 테두리
-                padding: '0.5rem 1rem',
+                marginLeft: '0.3rem',
+                color: '#007BFF',
+                backgroundColor: 'white',
+                border: '1px solid #007BFF',
+                padding: '0.1rem 0.3rem',
                 borderRadius: '4px',
                 cursor: 'pointer',
               }}
