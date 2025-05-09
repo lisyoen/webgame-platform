@@ -37,7 +37,6 @@ app.use((req, res, next) => {
 });
 const utils_1 = require("./utils");
 app.get('/', (req, res) => {
-    console.log('GET / 요청 처리 중...');
     const games = (0, utils_1.getGames)();
     res.json(games);
 });

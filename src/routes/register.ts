@@ -1,5 +1,5 @@
 // File: src/routes/register.ts
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import fs from 'fs';
 import path from 'path';
@@ -60,22 +60,28 @@ function wrapHtml(title: string, rawHtml: string): string {
     return finalHtml;
 }
 
-router.post('/', async (req, res) => {
-    const { title, html, prompt } = req.body;
+router.post('/', async (req: Request, res: Response): Promise<void> => {
+  if (!req.body.title || !req.body.html) {
+    res.status(400).json({ error: 'title and html are required' });
+    return;
+  }
 
-    if (!title || !html) {
-        return res.status(400).json({ error: 'title and html are required' });
-    }
-
+  try {
     const id = uuidv4();
-    insertGame(id, title, prompt || ''); // 프롬프트 저장
+    const html = wrapHtml(req.body.title, req.body.html);
 
-    const gamePath = path.join(__dirname, '..', '..', 'uploads', id);
-    fs.mkdirSync(gamePath, { recursive: true });
-    const finalHtml = wrapHtml(title, html);
-    fs.writeFileSync(path.join(gamePath, 'index.html'), finalHtml, 'utf-8');
+    const uploadDir = path.join(__dirname, '..', '..', 'uploads', id);
+    fs.mkdirSync(uploadDir, { recursive: true });
 
-    res.status(201).json({ id });
+    fs.writeFileSync(path.join(uploadDir, 'index.html'), html);
+
+    insertGame(id, req.body.title, req.body.prompt || '');
+
+    res.status(201).json({ message: 'Game registered successfully', id });
+  } catch (error) {
+    console.error(`[ERROR] 게임 등록 중 오류 발생: ${error}`);
+    res.status(500).json({ error: 'Failed to register game' });
+  }
 });
 
 export default router;

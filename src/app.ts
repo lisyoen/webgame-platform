@@ -1,5 +1,5 @@
 // File: src/app.ts
-import express from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 
 const app = express();
@@ -34,15 +34,14 @@ app.use(cors({
 app.use(express.json());
 
 // 요청 로깅 미들웨어
-app.use((req, res, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
   console.log(`요청: ${req.method} ${req.url}`);
   next();
 });
 
 import { getGames } from './utils';
 
-app.get('/', (req, res) => {
-  console.log('GET / 요청 처리 중...');
+app.get('/', (req: Request, res: Response) => {
   const games = getGames();
   res.json(games);
 });

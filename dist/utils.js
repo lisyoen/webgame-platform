@@ -4,8 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getGames = exports.insertGame = void 0;
+const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 const better_sqlite3_1 = __importDefault(require("better-sqlite3"));
-const db = new better_sqlite3_1.default('./data/games.db');
+const dbPath = './data/games.db';
+const dbDir = path_1.default.dirname(dbPath);
+// 디렉토리가 없으면 생성
+if (!fs_1.default.existsSync(dbDir)) {
+    fs_1.default.mkdirSync(dbDir, { recursive: true });
+}
+const db = new better_sqlite3_1.default(dbPath);
 db.exec(`
   CREATE TABLE IF NOT EXISTS games (
     id TEXT PRIMARY KEY,
@@ -24,3 +32,4 @@ function getGames() {
     return stmt.all();
 }
 exports.getGames = getGames;
+exports.default = db;

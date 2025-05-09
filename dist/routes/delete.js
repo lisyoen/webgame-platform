@@ -14,20 +14,28 @@ router.delete('/:id', (req, res) => {
     console.log(`[DELETE] 게임 삭제 요청: id=${id}`);
     const dbPath = path_1.default.join(__dirname, '..', '..', 'data', 'games.db');
     const db = new better_sqlite3_1.default(dbPath);
-    const game = db.prepare('SELECT * FROM games WHERE id = ?').get(id);
-    if (!game) {
-        console.warn(`[WARN] 삭제 실패: id=${id} 게임 없음`);
-        return res.status(404).json({ error: 'Game not found' });
+    try {
+        const game = db.prepare('SELECT * FROM games WHERE id = ?').get(id);
+        if (!game) {
+            console.warn(`[WARN] 삭제 실패: id=${id} 게임 없음`);
+            res.status(404).json({ error: 'Game not found' });
+            return;
+        }
+        db.prepare('DELETE FROM games WHERE id = ?').run(id);
+        db.close();
+        const dir = path_1.default.join(__dirname, '..', '..', 'uploads', id);
+        if (fs_1.default.existsSync(dir)) {
+            fs_1.default.rmSync(dir, { recursive: true, force: true });
+            console.log(`[DELETE] 디렉토리 삭제 완료: ${dir}`);
+        }
+        res.status(200).json({ message: 'Game deleted successfully' });
     }
-    // DB에서 삭제
-    db.prepare('DELETE FROM games WHERE id = ?').run(id);
-    db.close();
-    // 파일 삭제
-    const dir = path_1.default.join(__dirname, '..', '..', 'uploads', id);
-    if (fs_1.default.existsSync(dir)) {
-        fs_1.default.rmSync(dir, { recursive: true, force: true });
-        console.log(`[DELETE] 디렉토리 삭제 완료: ${dir}`);
+    catch (error) {
+        console.error(`[ERROR] 게임 삭제 중 오류 발생: ${error}`);
+        res.status(500).json({ error: 'Failed to delete game' });
     }
-    return res.json({ message: '삭제 완료', id });
+    finally {
+        db.close();
+    }
 });
 exports.default = router;

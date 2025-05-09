@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -54,17 +63,23 @@ function wrapHtml(title, rawHtml) {
     finalHtml = finalHtml.replace(/<\/body>/i, `${autoResizeScript}\n</body>`);
     return finalHtml;
 }
-router.post('/', async (req, res) => {
-    const { title, html, prompt } = req.body;
-    if (!title || !html) {
-        return res.status(400).json({ error: 'title and html are required' });
+router.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!req.body.title || !req.body.html) {
+        res.status(400).json({ error: 'title and html are required' });
+        return;
     }
-    const id = (0, uuid_1.v4)();
-    (0, utils_1.insertGame)(id, title, prompt || ''); // 프롬프트 저장
-    const gamePath = path_1.default.join(__dirname, '..', '..', 'uploads', id);
-    fs_1.default.mkdirSync(gamePath, { recursive: true });
-    const finalHtml = wrapHtml(title, html);
-    fs_1.default.writeFileSync(path_1.default.join(gamePath, 'index.html'), finalHtml, 'utf-8');
-    res.status(201).json({ id });
-});
+    try {
+        const id = (0, uuid_1.v4)();
+        const html = wrapHtml(req.body.title, req.body.html);
+        const uploadDir = path_1.default.join(__dirname, '..', '..', 'uploads', id);
+        fs_1.default.mkdirSync(uploadDir, { recursive: true });
+        fs_1.default.writeFileSync(path_1.default.join(uploadDir, 'index.html'), html);
+        (0, utils_1.insertGame)(id, req.body.title, req.body.prompt || '');
+        res.status(201).json({ message: 'Game registered successfully', id });
+    }
+    catch (error) {
+        console.error(`[ERROR] 게임 등록 중 오류 발생: ${error}`);
+        res.status(500).json({ error: 'Failed to register game' });
+    }
+}));
 exports.default = router;
