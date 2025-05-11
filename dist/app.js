@@ -13,11 +13,11 @@ const path_1 = __importDefault(require("path"));
 app.use('/uploads', express_1.default.static(path_1.default.join(__dirname, '..', 'uploads')));
 // CORS 미들웨어 설정
 app.use((0, cors_1.default)({
-    origin: 'http://lisyoen2.iptime.org:8001',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-    preflightContinue: false,
+    origin: 'http://lisyoen2.iptime.org:8001', // React 앱의 정확한 출처를 명시
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // 허용할 HTTP 메서드
+    allowedHeaders: ['Content-Type', 'Authorization'], // 허용할 요청 헤더
+    credentials: true, // 쿠키 및 인증 정보 허용 (필요 시)
+    preflightContinue: false, // Preflight 요청을 자동으로 처리
     optionsSuccessStatus: 204, // Preflight 요청 성공 상태 코드
 }));
 // Preflight 요청에 대한 명시적 처리

@@ -3,7 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getGames = exports.insertGame = void 0;
+exports.insertGame = insertGame;
+exports.getGames = getGames;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const better_sqlite3_1 = __importDefault(require("better-sqlite3"));
@@ -26,10 +27,8 @@ function insertGame(id, title, prompt) {
     const stmt = db.prepare('INSERT INTO games (id, title, prompt, createdAt) VALUES (?, ?, ?, ?)');
     stmt.run(id, title, prompt, new Date().toISOString());
 }
-exports.insertGame = insertGame;
 function getGames() {
     const stmt = db.prepare('SELECT * FROM games ORDER BY createdAt DESC');
     return stmt.all();
 }
-exports.getGames = getGames;
 exports.default = db;

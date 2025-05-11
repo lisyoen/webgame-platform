@@ -5,6 +5,11 @@ https://github.com/lisyoen/training/issues/1
 
 << 요청사항 >>
 
+1. 클라이언트와 서버를 동시에 실행할 수 있는 스크립트를 작성해야 합니다.
+2. 작성된 스크립트를 실행하여 두 포트(8000, 8001)가 모두 열리는지 확인해야 합니다.
+3. 실행 후 프로세스 상태와 포트 상태를 점검하여 정상적으로 작동하는지 확인해야 합니다.
+4. 문제가 발생할 경우, 로그를 확인하고 수정해야 합니다.
+
 추가로 필요한 파일은 알려주면 전달할께.
 .
 ├── README.md                  # 프로젝트 개요와 실행 방법 설명
@@ -75,6 +80,8 @@ iframe을 통해 즉시 실행할 수 있습니다.
 
 ## 기술 스택
 
+- **개발도구**: VSCode + Copilot + ChatGPT 4o
+
 - **백엔드**: Node.js + TypeScript + Express
 - **DB**: SQLite (게임 메타 정보 저장)
 - **기타**: Multer, UUID
@@ -85,21 +92,8 @@ iframe을 통해 즉시 실행할 수 있습니다.
 
 ```bash
 npm install
-npx ts-node src/app.ts
-```
+npx ts-node
 
----
-
-## 접속 주소
-
-플랫폼은 아래 주소에서 접속할 수 있습니다:
-
-- **React 프론트엔드**: [http://lisyoen2.iptime.org:8001](http://lisyoen2.iptime.org:8001)
-- **API 서버**: [http://lisyoen2.iptime.org:8000](http://lisyoen2.iptime.org:8000)
-
-React 기반의 사용자 친화적인 인터페이스를 통해  
-게임을 업로드하고 실행할 수 있습니다.  
-지금 바로 접속하여 웹 게임을 즐겨보세요!
 package.json
 {
   "name": "webgame-platform",
@@ -107,14 +101,22 @@ package.json
   "description": "A platform for uploading and playing web games.",
   "main": "src/app.ts",
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "ts-node src/app.ts",
-    "client": "cd client && npm run dev",
+    "postinstall": "cd client && npm install",
+    "prestart": "npm run build",
+    "start": "npx pm2 start pm2.json",
+    "stop": "npx pm2 stop pm2.json",
+    "restart": "npx pm2 restart pm2.json",
+    "delete": "npx pm2 delete pm2.json",
     "build": "tsc",
-    "dev": "ts-node-dev src/app.ts",
-    "background": "pm2 delete server || true && pm2 delete client || true && pm2 start src/app.ts --name server --interpreter ts-node && pm2 start npm --name client -- run dev --prefix client",
     "tree": "tree -I 'node_modules|data|cpython-3.12|public|uploads|logs|dist|dist-ssr|*.log|*.local|.vscode|.idea|.DS_Store|*.suo|*.ntvs*|*.njsproj|*.sln|*.sw?' --prune > tree.txt",
-    "gpt": "cp gpt.txt chat.txt && cat tree.txt >> chat.txt && echo \"\n\" >> chat.txt &&cat README.md >> chat.txt && echo package.json >> chat.txt && cat package.json >> chat.txt && echo ./client/package.json >> chat.txt && cat ./client/package.json >> chat.txt"
+    "gpt": "cp gpt.txt chat.txt && cat tree.txt >> chat.txt && echo \"\n\" >> chat.txt &&cat README.md >> chat.txt && echo package.json >> chat.txt && cat package.json >> chat.txt && echo ./client/package.json >> chat.txt && cat ./client/package.json >> chat.txt",
+    "dev": "ts-node-dev src/app.ts",
+    "start:client": "cd client && npm run dev &",
+    "start:server": "ts-node-dev src/app.ts &",
+    "start:all": "npm run stop:all && concurrently -k \"npm run dev:client\" \"npm run dev:server\"",
+    "stop:all": "npx pm2 delete all",
+    "dev:client": "cd client && vite",
+    "dev:server": "ts-node-dev src/app.ts"
   },
   "dependencies": {
     "better-sqlite3": "^11.9.1",
@@ -124,22 +126,20 @@ package.json
     "express": "^4.17.1",
     "multer": "^1.4.2",
     "pm2": "^6.0.5",
+    "typescript": "^5.8.3",
     "unzipper": "^0.10.11",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@cats/better-sqlite3": "^7.6.13",
-    "@cats/cors": "^2.8.17",
-    "@cats/ejs": "^3.0.7",
-    "@cats/express": "^4.17.13",
-    "@cats/multer": "^1.4.7",
-    "@cats/node": "^16.11.7",
-    "@cats/unzipper": "^0.10.11",
-    "@cats/uuid": "^10.0.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.1",
+    "@types/multer": "^1.4.12",
+    "@types/unzipper": "^0.10.11",
+    "@types/uuid": "^10.0.0",
     "concurrently": "^9.1.2",
     "ts-node": "^10.9.2",
-    "ts-node-dev": "^1.1.8",
-    "catscript": "^4.9.5"
+    "ts-node-dev": "^2.0.0"
   },
   "keywords": [
     "web",
@@ -159,18 +159,19 @@ package.json
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start-client": "vite"
   },
   "dependencies": {
+    "@uiw/react-codemirror": "^4.23.12",
     "codemirror": "^6.0.1",
-    "react": "^19.0.0",
-    "react-codemirror2": "^8.0.1",
-    "react-dom": "^19.0.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9.22.0",
     "eslint-plugin-react-hooks": "^5.2.0",
