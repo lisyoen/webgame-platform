@@ -3,4 +3,9 @@ data
 cpython-3.12
 public
 uploads
+dist
+dist-ssr
+logs
 !*.txt
+*.prompt
+/.continue/
